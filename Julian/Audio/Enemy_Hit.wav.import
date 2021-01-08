@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Enemy_Hit.wav-eada7f0807344429db8b05470c8f5331.sample"
+
+[deps]
+
+source_file="res://Julian/Audio/Enemy_Hit.wav"
+dest_files=[ "res://.import/Enemy_Hit.wav-eada7f0807344429db8b05470c8f5331.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
