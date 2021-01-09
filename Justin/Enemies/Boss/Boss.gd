@@ -7,6 +7,8 @@ export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/projectil
 
 var path := PoolVector2Array() setget set_path
 
+var facedirection : int = 1
+
 #create timer
 var timer = null
 var can_shoot = true
@@ -62,6 +64,13 @@ func shoot():
 	#projectile node path  EX:load("res://Justin/Enemies/Boss/projectile.tscn")
 	var projectile = load(projectileNodePath)
 	var bullet = projectile.instance()
+	
+	if facedirection == -1 && sign(bullet.velocity.x) == 1:
+		#facing right
+		bullet.velocity.x *= -1
+	elif facedirection == 1 && sign(bullet.velocity.x) == -1:
+		bullet.velocity.x *= -1
+	
 	#may need to change Test to Game!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	add_child_below_node(get_tree().get_root().get_node("Test"),bullet)
 	

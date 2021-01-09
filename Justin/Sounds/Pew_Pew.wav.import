@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pew_Pew.wav-54547fe8a8bd2b75e2ccea9a6597c16f.sample"
+
+[deps]
+
+source_file="res://Justin/Sounds/Pew_Pew.wav"
+dest_files=[ "res://.import/Pew_Pew.wav-54547fe8a8bd2b75e2ccea9a6597c16f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
