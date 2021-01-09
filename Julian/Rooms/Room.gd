@@ -37,15 +37,19 @@ var open_neighbours : Array = []
 func set_size(value : int) -> void:
 	size = value
 	
-	$Sprite.scale = self.size * Vector2(
+	var new_scale = self.size * Vector2(
 		1.0 / $Sprite.texture.get_width(),
 		1.0 / $Sprite.texture.get_height()
 	)
+	
+	$Sprite.scale = new_scale
+	
+	for wall in $Walls.get_children():
+		wall.position *= new_scale
+		wall.scale = new_scale
 
 func set_id(value : Vector2) -> void:
 	id = value
-	
-	
 
 func _ready() -> void:
-	$Sprite.visible = true
+	$Sprite.visible = false

@@ -70,5 +70,6 @@ func _ready():
 		[self.Rooms, self.rooms, self.unit_room_size],
 		self.position_array,
 		0,
-		[0, 16, 4]
+		[0, 16, 1]
 	)
+	
