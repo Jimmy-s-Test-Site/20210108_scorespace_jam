@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Julian/Enemies/Minion/Minion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Julian/Enemies/Minion/Test/Test.gd" type="Script" id=3]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 103.937, 127.21, 283.265, 44.3604, 343.651, 184.617, 90.7619, 323.57 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 103.937, 127.21, 283.265, 44.3604, 343.651, 184.617, 90.7619, 323.57 ) ]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.1429
+
+[node name="Test" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+scale = Vector2( 2.73242, 1.5329 )
+navpoly = SubResource( 2 )
+
+[node name="Player" type="StaticBody2D" parent="."]
+position = Vector2( 392.862, 352.453 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 1 )
+
+[node name="Minion" parent="." instance=ExtResource( 1 )]
+position = Vector2( 758.784, 226.737 )

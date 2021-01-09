@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="test 2D node" type="Node2D"]
