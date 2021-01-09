@@ -1,6 +1,7 @@
 extends Node2D
 
 export (int) var speed := 500
+
 var path := PoolVector2Array() setget set_path
 
 func _ready() -> void:
