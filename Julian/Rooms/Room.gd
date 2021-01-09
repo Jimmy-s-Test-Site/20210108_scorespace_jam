@@ -34,6 +34,9 @@ var id : Vector2 = Vector2.ZERO setget set_id
 var neighbours : Array = []
 var open_neighbours : Array = []
 
+func is_even(n : int) -> bool:
+	return n % 2 == 0
+
 func set_size(value : int) -> void:
 	size = value
 	
@@ -52,4 +55,4 @@ func set_id(value : Vector2) -> void:
 	id = value
 
 func _ready() -> void:
-	$Sprite.visible = false
+	$Sprite.visible = true
