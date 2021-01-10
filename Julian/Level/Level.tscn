@@ -1,3 +1,25 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Julian/Level/Level.gd" type="Script" id=1]
+[ext_resource path="res://Scott/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Julian/Rooms/Room3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Julian/Rooms/Room5.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Julian/Rooms/Room4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Julian/Rooms/Room1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Julian/Rooms/Room2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Julian/Rooms/Room6.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="Node2D"]
+script = ExtResource( 1 )
+unit_room_size = 700
+rooms = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ) ]
+
+[node name="Rooms" type="Navigation2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 79.2854, 22.653 )
+
+[node name="Camera2D" parent="Player" index="2"]
+zoom = Vector2( 40, 40 )
+
+[editable path="Player"]

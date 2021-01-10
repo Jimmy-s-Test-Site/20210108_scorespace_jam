@@ -9,31 +9,8 @@ export (Array, PackedScene) var rooms : Array
 
 onready var Rooms : Node2D = $Rooms
 
-var neighbour_network := {
-	"odd_column" : {
-		"first": [[-1, 0], [ 0, 1], [ 1, 0]],
-		"last" : [[-1,-1], [ 0,-1], [ 1,-1]],
-		"else" : [[-1,-1], [-1, 0], [ 0,-1], [ 0, 1], [ 1,-1], [ 1, 0]]
-	},
-	"even_column" : {
-		"first": [[-1, 0], [-1, 1], [ 0, 1], [ 1, 0], [ 1, 1]],
-		"last" : [[-1, 0], [-1, 1], [ 0,-1], [ 1, 0], [ 1, 1]],
-		"else" : [[-1, 0], [-1, 1], [ 0,-1], [ 0, 1], [ 1, 0], [ 1, 1]]
-	}
-}
-
 func is_even(n : int) -> bool:
 	return n % 2 == 0
-
-func get_room_total(length : int, maj_height : int) -> int:
-	var r = maj_height
-	var c = length
-	return 2*(r-1)*(c-1) + (r-1)*ceil(c/2) + (r-2)*floor(c/2)
-
-func get_room_connection_total(length : int, maj_height : int) -> int:
-	var lateral_connections = 2 * maj_height - 2
-	var vertical_connections = 2 * length - 2
-	return lateral_connections * vertical_connections
 
 func get_room_positions(length : int, maj_height : int) -> Array:
 	var room_positions := []
@@ -53,29 +30,9 @@ func get_room_positions(length : int, maj_height : int) -> Array:
 	
 	return room_positions
 
-func get_random_room_connections(length : int, maj_height : int) -> Array:
-	#return {
-	#	[0,0] : [[0,1],[1,1]],
-	#	[0,1] : [[0,0]],
-	#	[1,1] : [[0,0]]
-	#}
+func instantiate_rooms(positions : Array) -> Array:
+	var room_instances := []
 	
-	var connections := []
-	
-	#for connection in range(get_room_connection_total(length, maj_height)):
-	#	if randf() >= open_wall_percentage:
-	#		pass
-	
-	return []
-
-func get_open_walls(length : int, maj_height : int) -> Array:
-	# returns {
-	#     [0,0] : ["TopLeft", "Down"]
-	# }
-	# returns the walls that should be open
-	return []
-
-func instantiate_rooms(positions : Array, open_walls : Array) -> void:
 	for room_pos in positions:
 		var rand_room_idx = randi() % self.rooms.size()
 		var new_room = self.rooms[rand_room_idx].instance()
@@ -88,10 +45,12 @@ func instantiate_rooms(positions : Array, open_walls : Array) -> void:
 				wall.disabled = true
 			else:
 				wall.disabled = false
-			
+		
+		print(room_pos, " room_pos")
+		
 		if room_pos[0] == 0:
 			new_room.get_node("Walls/LeftUp").disabled = false
-			new_room.get_node("Walls/RightUp").disabled = false
+			new_room.get_node("Walls/LeftDown").disabled = false
 		
 		if room_pos[1] == 0:
 			new_room.get_node("Walls/Up").disabled = false
@@ -102,6 +61,13 @@ func instantiate_rooms(positions : Array, open_walls : Array) -> void:
 			new_room.get_node("Walls/Down").disabled = false
 		
 		self.Rooms.add_child(new_room)
+		room_instances.append(new_room)
+	
+	return room_instances
+
+func generate() -> Array:
+	var positions = self.get_room_positions(26, 18)
+	return self.instantiate_rooms(positions)
 
 func _ready() -> void:
-	self.instantiate_rooms(self.get_room_positions(26, 18), [])
+	pass
