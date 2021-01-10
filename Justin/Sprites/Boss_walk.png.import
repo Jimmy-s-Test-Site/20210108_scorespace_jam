@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bullet_transparent.png-e1c76f1030cbca67d5b14505a69fdfef.stex"
+path="res://.import/Boss_walk.png-ebc829a53226ed8c345de814b71ea9b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Justin/Sprites/Bullet_transparent.png"
-dest_files=[ "res://.import/Bullet_transparent.png-e1c76f1030cbca67d5b14505a69fdfef.stex" ]
+source_file="res://Justin/Sprites/Boss_walk.png"
+dest_files=[ "res://.import/Boss_walk.png-ebc829a53226ed8c345de814b71ea9b9.stex" ]
 
 [params]
 

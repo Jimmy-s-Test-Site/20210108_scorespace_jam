@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hero_transparent.png-1b6a1ac4c408686f7944d4a78cc7ff96.stex"
+path="res://.import/Boss_shoot.png-bd2877032160eba6a337adf0872fc800.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Justin/Sprites/Hero_transparent.png"
-dest_files=[ "res://.import/Hero_transparent.png-1b6a1ac4c408686f7944d4a78cc7ff96.stex" ]
+source_file="res://Justin/Sprites/Boss_shoot.png"
+dest_files=[ "res://.import/Boss_shoot.png-bd2877032160eba6a337adf0872fc800.stex" ]
 
 [params]
 
