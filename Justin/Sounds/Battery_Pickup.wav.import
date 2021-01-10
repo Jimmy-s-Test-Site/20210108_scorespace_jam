@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Battery_Pickup.wav-7efa6af0a28b04b240219f38e0e13074.sample"
+
+[deps]
+
+source_file="res://Justin/Sounds/Battery_Pickup.wav"
+dest_files=[ "res://.import/Battery_Pickup.wav-7efa6af0a28b04b240219f38e0e13074.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

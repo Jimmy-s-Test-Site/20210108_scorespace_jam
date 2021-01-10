@@ -7,4 +7,5 @@ func _ready():
 	velocity.x = bulletVelocity
 
 func _physics_process(delta):
-	move_and_slide(velocity)
+	move_and_collide(velocity)
+
