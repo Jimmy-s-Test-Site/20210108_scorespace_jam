@@ -18,5 +18,8 @@ rooms = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 5 )
 [node name="Rooms" type="Navigation2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 0.8, 0.8 )
 
 [node name="Boss" parent="." instance=ExtResource( 9 )]
+scale = Vector2( 0.8, 0.8 )
+MoveSpeed = 250

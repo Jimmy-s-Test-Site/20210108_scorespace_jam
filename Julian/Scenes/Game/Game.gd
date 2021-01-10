@@ -6,6 +6,12 @@ var end_room = null
 func _ready():
 	new_level()
 
+func _process(delta : float) -> void:
+	pass
+
+func teleport() -> void:
+	pass
+
 func new_level() -> void:
 	var rooms = $Level.generate()
 	
@@ -16,7 +22,7 @@ func new_level() -> void:
 	self.start_room = rooms[random_room_idx]
 	
 	random_room_idx = randi() % rooms.size()
-	self.end_room = rooms[random_room_idx]
+	self.end_room   = rooms[random_room_idx]
 	
 	var start_position = start_room.get_node("PlayerSpawnPoint").get_child(0).global_position - \
 		Vector2.ONE * $Level.unit_room_size / 4
@@ -39,3 +45,6 @@ func on_Player_finished_level():
 func on_Player_moved() -> void:
 	var new_path : PoolVector2Array = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
 	$Level/Boss.path = new_path
+
+func on_Player_dead() -> void:
+	pass

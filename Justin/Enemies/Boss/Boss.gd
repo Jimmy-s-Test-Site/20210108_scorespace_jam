@@ -35,6 +35,7 @@ func _process(delta : float) -> void:
 	if Player != null:
 		if (self.Player.position.y == self.position.y) && can_shoot:
 			shoot()
+	
 	self.move_along_path(move_distance)
 
 func move_along_path(distance : float) -> void:
@@ -42,6 +43,11 @@ func move_along_path(distance : float) -> void:
 	
 	for i in range(self.path.size()):
 		var distance_to_next_point := start_point.distance_to(self.path[0])
+		
+		if (start_point - self.path[0]).x > 0:
+			$Boss_Animated_Sprite.flip_h = true
+		elif (start_point - self.path[0]).x < 0:
+			$Boss_Animated_Sprite.flip_h = false
 		
 		if distance <= distance_to_next_point and distance >= 0:
 			self.position = start_point.linear_interpolate(self.path[0], distance / distance_to_next_point)
