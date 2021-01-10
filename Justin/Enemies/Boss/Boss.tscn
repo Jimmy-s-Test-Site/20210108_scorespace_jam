@@ -33,8 +33,6 @@ script = ExtResource( 1 )
 scale = Vector2( 0.146, 0.146 )
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="Boss_Animated_Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Shoot"

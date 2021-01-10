@@ -29,7 +29,7 @@ func on_timeout_complete():
 func _process(delta : float) -> void:
 	var move_distance : = self.MoveSpeed * delta
 	#if boss y-pos is same as hero y-pos and delay is 0 then shoot
-	if (self.Player.position == self.Boss.position) && can_shoot:
+	if (self.Player.position.y == self.Boss.position.y) && can_shoot:
 		shoot()
 	self.move_along_path(move_distance)
 
