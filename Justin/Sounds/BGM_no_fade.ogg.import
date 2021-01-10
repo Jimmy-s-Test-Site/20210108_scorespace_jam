@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BGM_no_fade.ogg-5c675bc17b269f27113a040a0bc25e6c.oggstr"
+
+[deps]
+
+source_file="res://Justin/Sounds/BGM_no_fade.ogg"
+dest_files=[ "res://.import/BGM_no_fade.ogg-5c675bc17b269f27113a040a0bc25e6c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

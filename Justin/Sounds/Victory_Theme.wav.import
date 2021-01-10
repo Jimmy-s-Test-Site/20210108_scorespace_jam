@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Victory_Theme.wav-af8a3039be26ce1f8b8e492b62f3933e.sample"
+
+[deps]
+
+source_file="res://Justin/Sounds/Victory_Theme.wav"
+dest_files=[ "res://.import/Victory_Theme.wav-af8a3039be26ce1f8b8e492b62f3933e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
