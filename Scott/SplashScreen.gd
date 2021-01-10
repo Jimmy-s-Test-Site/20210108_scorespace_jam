@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 signal proceed
 
 func _on_GO_png_pressed():

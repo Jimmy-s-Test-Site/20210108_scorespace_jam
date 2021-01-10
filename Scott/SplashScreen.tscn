@@ -20,16 +20,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 353.553, -400 ), Vector2( 353.553, 300 ) ]
+"values": [ Vector2( 500, -400 ), Vector2( 456, 300 ) ]
 }
 
-[node name="SplashScreen" type="Node2D"]
+[node name="SplashScreen" type="Control"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_top = 3.0
-margin_right = 800.0
-margin_bottom = 454.0
+margin_right = 1024.0
+margin_bottom = 603.0
 rect_pivot_offset = Vector2( 981.523, 47.6205 )
 color = Color( 0.0352941, 0.027451, 0.0901961, 1 )
 __meta__ = {
@@ -37,10 +40,10 @@ __meta__ = {
 }
 
 [node name="GO! png" type="TextureButton" parent="ColorRect"]
-margin_left = 353.553
-margin_top = -400.0
-margin_right = 453.553
-margin_bottom = -300.0
+margin_left = 456.0
+margin_top = 300.0
+margin_right = 556.0
+margin_bottom = 400.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 __meta__ = {
@@ -48,10 +51,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="ColorRect"]
-margin_left = 200.0
+margin_left = 312.0
 margin_top = 90.0
-margin_right = 330.0
-margin_bottom = 107.0
+margin_right = 442.0
+margin_bottom = 127.0
 rect_scale = Vector2( 3, 3 )
 custom_fonts/font = SubResource( 1 )
 text = "SPACE GUY
