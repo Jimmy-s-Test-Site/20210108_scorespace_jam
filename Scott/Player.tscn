@@ -25,7 +25,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 19.2289, 51.0551 )
+extents = Vector2( 26, 73 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -45,4 +45,5 @@ shape = SubResource( 2 )
 position = Vector2( 1, 24.3268 )
 rotating = true
 current = true
+zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true

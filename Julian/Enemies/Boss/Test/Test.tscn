@@ -1,16 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Julian/Enemies/Boss/Boss.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Justin/Enemies/Boss/Boss.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scott/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Julian/Enemies/Boss/Test/Test.gd" type="Script" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 3.00647, 6.39148, 1011.45, 39.6893, 987.67, 658.077, 45.818, 905.432 )
+vertices = PoolVector2Array( -2487.02, -1574.92, 3357.45, -1416.34, 3538.67, 1898.54, -2373.76, 2004.26 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 3.00647, 6.39148, 1011.45, 39.6893, 987.67, 658.077, 45.818, 905.432 ) ]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
+outlines = [ PoolVector2Array( -2487.02, -1574.92, 3357.45, -1416.34, 3538.67, 1898.54, -2373.76, 2004.26 ) ]
 
 [node name="Test" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,15 +19,7 @@ navpoly = SubResource( 1 )
 
 [node name="Boss" parent="." instance=ExtResource( 1 )]
 position = Vector2( 113.984, 413.881 )
+MoveSpeed = 300
 
-[node name="Player" type="StaticBody2D" parent="."]
-position = Vector2( 840.999, 125.111 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 2 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 492.556, 221.583 )

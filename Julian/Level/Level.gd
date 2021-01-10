@@ -3,7 +3,7 @@ extends Node2D
 
 export (int) var unit_room_size : int = 20
 
-export (float) var open_wall_percentage : float = 0.4
+export (float) var open_wall_percentage : float = 0.6
 
 export (Array, PackedScene) var rooms : Array
 
@@ -45,8 +45,6 @@ func instantiate_rooms(positions : Array) -> Array:
 				wall.disabled = true
 			else:
 				wall.disabled = false
-		
-		print(room_pos, " room_pos")
 		
 		if room_pos[0] == 0:
 			new_room.get_node("Walls/LeftUp").disabled = false
