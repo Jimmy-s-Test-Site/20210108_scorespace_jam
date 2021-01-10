@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scott/Font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scott/GO! png.png" type="Texture" id=2]
 [ext_resource path="res://Scott/GO! Hover png.png" type="Texture" id=3]
+[ext_resource path="res://Scott/SplashScreen.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -23,6 +24,7 @@ tracks/0/keys = {
 }
 
 [node name="SplashScreen" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_top = 3.0
@@ -52,7 +54,8 @@ margin_right = 330.0
 margin_bottom = 107.0
 rect_scale = Vector2( 3, 3 )
 custom_fonts/font = SubResource( 1 )
-text = "SPACE JAM"
+text = "SPACE GUY
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -60,3 +63,4 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 autoplay = "Intro"
 anims/Intro = SubResource( 2 )
+[connection signal="pressed" from="ColorRect/GO! png" to="." method="_on_GO_png_pressed"]
