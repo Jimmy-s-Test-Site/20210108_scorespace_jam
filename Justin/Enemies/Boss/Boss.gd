@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var MoveSpeed := 500
 export (int) var bulletVaporizeDistX := -5000
 export (int) var bulletDelay := 2
-export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/projectile.tscn"
+export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/Projectile.tscn"
 
 var Player = null
 
@@ -72,7 +72,7 @@ func set_path(value : PoolVector2Array) -> void:
 #call function to shoot
 func shoot():
 	#projectile node path  EX:load("res://Justin/Enemies/Boss/projectile.tscn")
-	var projectile = load(projectileNodePath)
+	var projectile = load(str(projectileNodePath))
 	var bullet = projectile.instance()
 	
 	if facedirection == -1 && sign(bullet.velocity.x) == 1:
