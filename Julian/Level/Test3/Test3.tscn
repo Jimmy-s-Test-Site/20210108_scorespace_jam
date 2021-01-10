@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Julian/Level/Test2/Test2.gd" type="Script" id=1]
+[ext_resource path="res://Julian/Level/Test3/Test3.gd" type="Script" id=1]
+[ext_resource path="res://Julian/Rooms/Room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Julian/Rooms/Room2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Julian/Rooms/Room3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Julian/Rooms/Room5.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Julian/Rooms/Room6.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Julian/Rooms/Room4.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Julian/Level/Test2/TestCamera.gd" type="Script" id=8]
 
 [node name="Test3" type="Node2D"]
 script = ExtResource( 1 )
+rooms = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Rooms" type="Navigation2D" parent="."]
 
