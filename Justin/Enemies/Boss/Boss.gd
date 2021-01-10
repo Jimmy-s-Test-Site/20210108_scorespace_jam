@@ -83,7 +83,14 @@ func shoot():
 		queue_free()
 	
 
-
+#func get_input_axis():
+#	axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+#	if Input.is_action_pressed("move_left"):
+#		$AnimatedSprite.flip_h = true
+#	if Input.is_action_pressed("move_right"):
+#		$AnimatedSprite.flip_h = false
+#	axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+#	axis = axis.normalized()
 
 
 ##TO DELAY BOSS FROM ENTERING####

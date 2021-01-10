@@ -5,11 +5,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 29.6037
 
-[node name="Hair_Froot" type="Node2D"]
+[node name="Hair_Froot" type="KinematicBody2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="Hair_Froot_Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -5.55589, 5.15905 )
 shape = SubResource( 1 )
 

@@ -5,15 +5,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.3721, 37.3687 )
 
-[node name="Idek_Froot" type="Node2D"]
+[node name="Idek_Froot" type="KinematicBody2D"]
 
-[node name="Idek_Froot" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+[node name="Idek_Froot_Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0.33371, 2.33597 )
+shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="Idek_Froot_Collider" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 0.33371, 2.33597 )
-shape = SubResource( 1 )
+[node name="Idek_Froot_Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
