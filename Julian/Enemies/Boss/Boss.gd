@@ -16,7 +16,7 @@ var can_shoot = true
 func _ready() -> void:
 	self.set_process(false)
 	#set up timer
-	timer=Timer.new()
+	timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(bulletDelay)
 	timer.connect("timeout",self,"on_timeout_complete")
@@ -72,7 +72,7 @@ func shoot():
 		bullet.velocity.x *= -1
 	
 	#may need to change Test to Game!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	add_child_below_node(get_tree().get_root().get_node("Test"),bullet)
+	add_child_below_node(get_tree().get_root().get_node("Test"), bullet)
 	
 	#start timer and disable shooting
 	can_shoot=false
