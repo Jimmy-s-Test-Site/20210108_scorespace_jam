@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="EnemySpawnPoints" type="Node2D"]
+
+[node name="Position2D1" type="Position2D" parent="."]
+position = Vector2( 625, 125 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 375, 125 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 125, 375 )
+
+[node name="Position2D4" type="Position2D" parent="."]
+position = Vector2( 125, 625 )
+
+[node name="Position2D5" type="Position2D" parent="."]
+position = Vector2( 375, 875 )
+
+[node name="Position2D6" type="Position2D" parent="."]
+position = Vector2( 625, 875 )
