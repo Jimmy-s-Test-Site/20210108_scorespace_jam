@@ -9,3 +9,5 @@ func _ready():
 func _physics_process(delta):
 	move_and_collide(velocity)
 
+func remove() -> void:
+	self.queue_free()
