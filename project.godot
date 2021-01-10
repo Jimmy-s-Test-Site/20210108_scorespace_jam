@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Scorespacejam 20210108"
 config/icon="res://icon.png"
 
+[memory]
+
+limits/message_queue/max_size_kb=4096
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
