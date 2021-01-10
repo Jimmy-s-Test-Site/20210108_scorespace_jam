@@ -30,8 +30,8 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_bottom = 600.0
 margin_right = 1024.0
+margin_bottom = 600.0
 rect_pivot_offset = Vector2( 981.523, 47.6205 )
 color = Color( 0.0352941, 0.027451, 0.0901961, 1 )
 __meta__ = {
@@ -39,10 +39,10 @@ __meta__ = {
 }
 
 [node name="GO! png" type="TextureButton" parent="ColorRect"]
-margin_left = 456.0
-margin_top = 300.0
-margin_right = 556.0
-margin_bottom = 400.0
+margin_left = 500.0
+margin_top = -400.0
+margin_right = 600.0
+margin_bottom = -300.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 __meta__ = {
