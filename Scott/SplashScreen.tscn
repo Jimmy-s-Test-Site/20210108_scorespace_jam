@@ -30,9 +30,8 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_top = 3.0
+margin_bottom = 600.0
 margin_right = 1024.0
-margin_bottom = 603.0
 rect_pivot_offset = Vector2( 981.523, 47.6205 )
 color = Color( 0.0352941, 0.027451, 0.0901961, 1 )
 __meta__ = {

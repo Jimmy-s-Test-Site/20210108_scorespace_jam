@@ -6,7 +6,6 @@ signal dead
 
 var motion = Vector2.ZERO
 
-var score : int = 0
 export (int) var speed : int = 30000
 var axis : Vector2 = Vector2.ZERO
 
@@ -35,8 +34,14 @@ func get_input_axis():
 func get_hurt() -> void:
 	for slide_idx in self.get_slide_count():
 		var collision = self.get_slide_collision(slide_idx)
-		if collision.collider.name == "Projectile":
-			collision.collider.queue_free()
+		
+		var projectile_collision = collision.collider.name == "Projectile"
+		var boss_collision = collision.collider.name == "Boss"
+		var minion_collision = collision.collider.name.begins_with("Minion")
+		
+		if projectile_collision or boss_collision or minion_collision:
+			if projectile_collision:
+				collision.collider.queue_free()
 			
 			self.emit_signal("dead")
 

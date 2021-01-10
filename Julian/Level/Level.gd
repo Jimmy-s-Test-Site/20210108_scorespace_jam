@@ -1,9 +1,11 @@
 extends Node2D
 
-
 export (int) var unit_room_size : int = 20
 
 export (float) var open_wall_percentage : float = 0.4
+
+export (float) var battery_chances : float = 0.3
+export (float) var fruit_chances : float = 0.4
 
 export (Array, PackedScene) var rooms : Array
 
@@ -53,17 +55,21 @@ func instantiate_rooms(positions : Array) -> Array:
 		if room_pos[0] == 0:
 			new_room.get_node("Walls/LeftUp").disabled = false
 			new_room.get_node("Walls/LeftDown").disabled = false
+			new_room.get_node("Walls/RightUp").disabled = false
+			new_room.get_node("Walls/RightDown").disabled = false
 			new_room.get_node("Walls/LeftUp").visible = true
 			new_room.get_node("Walls/LeftDown").visible = true
+			new_room.get_node("Walls/RightUp").visible = true
+			new_room.get_node("Walls/RightDown").visible = true
 		
 		if room_pos[1] == 0:
 			new_room.get_node("Walls/Up").disabled = false
 			new_room.get_node("Walls/Up").visible = true
 		
-		if is_even(room_pos[0]) and room_pos[1] == 17:
+		if is_even(room_pos[0]) and room_pos[1] == 17 * unit_room_size:
 			new_room.get_node("Walls/Down").disabled = false
 			new_room.get_node("Walls/Down").visible = true
-		elif not is_even(room_pos[0]) and room_pos[1] == 16:
+		elif not is_even(room_pos[0]) and room_pos[1] == 16 * unit_room_size:
 			new_room.get_node("Walls/Down").disabled = false
 			new_room.get_node("Walls/Down").visible = true
 		
