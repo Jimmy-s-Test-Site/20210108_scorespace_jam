@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Julian/Rooms/Room.gd" type="Script" id=1]
-[ext_resource path="res://Julian/Sprites/Room1.png" type="Texture" id=2]
+[ext_resource path="res://Julian/Sprites/Room5.png" type="Texture" id=2]
 [ext_resource path="res://Julian/Rooms/Walls/Walls.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
