@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Boss_transparent.png-ed3d8fdca3be23fc699566fc137e3cfb.stex"
+path="res://.import/idekfroot.png-c2859cbcb89bb87a5952e353abf2dd46.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Justin/Sprites/Boss_transparent.png"
-dest_files=[ "res://.import/Boss_transparent.png-ed3d8fdca3be23fc699566fc137e3cfb.stex" ]
+source_file="res://Justin/Sprites/idekfroot.png"
+dest_files=[ "res://.import/idekfroot.png-c2859cbcb89bb87a5952e353abf2dd46.stex" ]
 
 [params]
 

@@ -5,6 +5,8 @@ export (int) var bulletVaporizeDistX := -5000
 export (int) var bulletDelay := 2
 export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/projectile.tscn"
 
+var Player = null
+
 var path := PoolVector2Array() setget set_path
 
 var facedirection : int = 1
@@ -29,8 +31,10 @@ func on_timeout_complete():
 func _process(delta : float) -> void:
 	var move_distance : = self.MoveSpeed * delta
 	#if boss y-pos is same as hero y-pos and delay is 0 then shoot
-	if (self.Player.position == self.Boss.position) && can_shoot:
-		shoot()
+	
+	if Player != null:
+		if (self.Player.position.y == self.position.y) && can_shoot:
+			shoot()
 	self.move_along_path(move_distance)
 
 func move_along_path(distance : float) -> void:
@@ -79,11 +83,17 @@ func shoot():
 	timer.start()
 	
 	#if bullet goes past variable it disappears
-	if position.x<bulletVaporizeDistX:
+	if position.x < bulletVaporizeDistX:
 		queue_free()
-	
 
-
+#func get_input_axis():
+#	axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+#	if Input.is_action_pressed("move_left"):
+#		$AnimatedSprite.flip_h = true
+#	if Input.is_action_pressed("move_right"):
+#		$AnimatedSprite.flip_h = false
+#	axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+#	axis = axis.normalized()
 
 
 ##TO DELAY BOSS FROM ENTERING####

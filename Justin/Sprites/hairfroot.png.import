@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BatteryPack_transparent.png-fff9b12150110ce0d1080fec7b607bb4.stex"
+path="res://.import/hairfroot.png-48a7fc2b2150d0586dd48cb375a0d81b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Justin/Sprites/BatteryPack_transparent.png"
-dest_files=[ "res://.import/BatteryPack_transparent.png-fff9b12150110ce0d1080fec7b607bb4.stex" ]
+source_file="res://Justin/Sprites/hairfroot.png"
+dest_files=[ "res://.import/hairfroot.png-48a7fc2b2150d0586dd48cb375a0d81b.stex" ]
 
 [params]
 
