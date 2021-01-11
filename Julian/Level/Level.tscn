@@ -24,6 +24,6 @@ scale = Vector2( 0.8, 0.8 )
 [node name="Boss" parent="." instance=ExtResource( 9 )]
 position = Vector2( 128.854, -223.248 )
 scale = Vector2( 0.8, 0.8 )
-MoveSpeed = 250
+speed = 100
 
 [node name="Minions" type="Node2D" parent="."]

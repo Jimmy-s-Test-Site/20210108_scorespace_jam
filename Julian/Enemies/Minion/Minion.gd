@@ -1,39 +1,24 @@
-extends Node2D
+extends KinematicBody2D
 
 export (int) var speed := 500
 
-var path := PoolVector2Array() setget set_path
+var Player = null
 
 func _ready() -> void:
-	self.set_process(false)
+	self.z_index = 2
 
 func _process(delta : float) -> void:
-	var move_distance : = self.speed * delta
-	
-	self.move_along_path(move_distance)
+	movement(delta)
 
-func move_along_path(distance : float) -> void:
-	var start_point := self.position
-	
-	for i in range(self.path.size()):
-		var distance_to_next_point := start_point.distance_to(self.path[0])
+func movement(delta) -> void:
+	if self.Player != null:
+		var self_position_to_player = self.global_position - self.Player.global_position
 		
-		if distance <= distance_to_next_point and distance >= 0:
-			self.position = start_point.linear_interpolate(self.path[0], distance / distance_to_next_point)
-			break
-		elif distance < 0.0:
-			self.position = self.path[0]
-			self.set_process(false)
-			break
+		#if self_position_to_player.x > 0:
+		#	$Boss_Animated_Sprite.flip_h = true
+		#else:
+		#	$Boss_Animated_Sprite.flip_h = false
 		
-		distance -= distance_to_next_point
-		start_point = path[0]
-		self.path.remove(0)
-
-func set_path(value : PoolVector2Array) -> void:
-	path = value
-	
-	if value.size() == 0:
-		return
-	
-	self.set_process(true)
+		var speed_correction = -1.0 / self_position_to_player.length() + 1
+		
+		move_and_slide(-self_position_to_player * self.speed * speed_correction * delta)

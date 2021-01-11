@@ -19,7 +19,10 @@ func new_level() -> void:
 	for room in $Level/Rooms.get_children():
 		room.queue_free()
 	
-	var rooms = $Level.generate()
+	for minion in $Level/Minions.get_children():
+		minion.queue_free()
+	
+	$Level.generate()
 	
 	randomize()
 	var random_room_idx
@@ -39,7 +42,8 @@ func new_level() -> void:
 	
 	for minion_spawn_point in start_room.get_node("EnemySpawnPoints").get_children():
 		var minion = self.minion_scene.instance()
-		minion.position = start_position + (minion_spawn_point.position / 2)
+		minion.position = start_position + (minion_spawn_point.position / 4)
+		minion.Player = $Level/Player
 		$Level/Minions.add_child(minion)
 	
 	if not $Level/Player.is_connected("moved", self, "on_Player_moved"):
@@ -53,9 +57,6 @@ func new_level() -> void:
 	
 	$Level/Boss.Player = $Level/Player
 	$Level/Boss.position = start_position
-	
-	var new_path : PoolVector2Array = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
-	$Level/Boss.path = new_path
 
 func on_splash_screen_proceed() -> void:
 	$Level.visible = true
@@ -75,10 +76,10 @@ func on_Player_finished_level() -> void:
 	pass
 
 func on_Player_moved() -> void:
-	$Level/Boss.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
-	
-	for minion in $Level/Minions.get_children():
-		minion.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, minion.global_position)
+	pass
+	#$Level/Boss.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
+	#for minion in $Level/Minions.get_children():
+	#	minion.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, minion.global_position)
 
 func on_Player_dead() -> void:
 	$Level.visible = false
