@@ -9,6 +9,7 @@ extents = Vector2( 50, 250 )
 extents = Vector2( 500, 50 )
 
 [node name="Walls" type="StaticBody2D"]
+collision_layer = 4
 
 [node name="LeftUp" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 250 )

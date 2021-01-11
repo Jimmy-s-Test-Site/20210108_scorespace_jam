@@ -1,9 +1,16 @@
 extends KinematicBody2D
 
 signal moved
+signal teleportation_energy_changed
+signal fruit_gathered
 signal teleported_to
 signal finished_level
 signal dead
+
+var alive = true
+
+var max_teleportation_energy = 3
+var teleportation_energy = max_teleportation_energy
 
 var motion = Vector2.ZERO
 
@@ -14,12 +21,17 @@ var axis : Vector2 = Vector2.ZERO
 
 onready var sprite : Sprite = get_node("Place Holder")
 
-func _physics_process(delta):
-	get_input_axis()
-	get_hurt()
-	teleportation_manager()
-	apply_movement(delta)
-	animation_manager()
+func _ready() -> void:
+	$Teleport.visible = false
+	$Teleport/AnimationPlayer.connect("animation_finished", self, "on_AnimationPlayer_animation_finished")
+
+func _physics_process(delta) -> void:
+	if alive:
+		get_input_axis()
+		get_hurt()
+		teleportation_manager()
+		apply_movement(delta)
+		animation_manager()
 
 func get_input_axis():
 	axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
@@ -39,13 +51,33 @@ func get_hurt() -> void:
 	for slide_idx in self.get_slide_count():
 		var collision = self.get_slide_collision(slide_idx)
 		
-		var projectile_collision = collision.collider.name == "Projectile"
+		var projectile_collision = collision.collider.name.begins_with("@Projectile")
 		var boss_collision = collision.collider.name == "Boss"
 		var minion_collision = collision.collider.name.begins_with("Minion")
+		var battery_pack_collision = collision.collider.name.begins_with("@Battery_Pickup")
+		var fruit_collision = collision.collider.name.begins_with("@Fruit")
+		
+		if battery_pack_collision:
+			if teleportation_energy < max_teleportation_energy:
+				collision.collider.queue_free()
+				teleportation_energy += 1
+				emit_signal("teleportation_energy_changed", teleportation_energy)
+		
+		if fruit_collision:
+			collision.collider.queue_free()
+			emit_signal("fruit_gathered")
 		
 		if projectile_collision or boss_collision or minion_collision:
 			if projectile_collision:
 				collision.collider.queue_free()
+				
+				if collision.collider.scale.length() < 2:
+					continue
+			
+			if not $SFX/PlayerHit.playing:
+				$SFX/PlayerHit.play()
+			
+			self.alive = false
 			
 			self.emit_signal("dead")
 
@@ -58,7 +90,7 @@ func teleportation_manager() -> void:
 	
 	holding_click = Input.is_mouse_button_pressed(1)
 	
-	if clicking:
+	if clicking and teleportation_energy > 0:
 		var room_id_x = floor(global_position.x / unit_room_size) + 0.5
 		var room_id_y = 0.0
 		
@@ -102,6 +134,8 @@ func teleportation_manager() -> void:
 		
 		if center_of_curr_room != new_position:
 			self.position = new_position
+			$Teleport.visible = true
+			$Teleport/AnimationPlayer.play("out")
 			self.emit_signal("teleported_to", new_position)
 
 func apply_movement(delta):
@@ -113,3 +147,6 @@ func animation_manager():
 		$AnimatedSprite.play("RunR")
 	else:
 		$AnimatedSprite.play("IdleF")
+
+func on_AnimationPlayer_animation_finished() -> void:
+	$Teleport.visible = false

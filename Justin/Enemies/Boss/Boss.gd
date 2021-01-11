@@ -2,25 +2,21 @@ extends KinematicBody2D
 
 export (int) var speed := 500
 export (int) var bulletVaporizeDistX := -5000
-export (int) var bulletDelay := 2
-export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/Projectile.tscn"
+export (int) var bulletDelay := 0.7
+export (PackedScene) var projectile
 
 var Player = null
 
 var facedirection : int = 1
 
 #create timer
-var timer = null
 var can_shoot = true
 
 func _ready() -> void:
+	$Teleport.visible = false
 	self.z_index = 3
-	#set up timer
-	#timer=Timer.new()
-	#timer.set_one_shot(true)
-	#timer.set_wait_time(bulletDelay)
-	#timer.connect("timeout", self, "on_timeout_complete")
-	#add_child(timer)
+	
+	$Gun/Timer.start(bulletDelay)
 
 #if timer finishs...can shoot again
 func on_timeout_complete():
@@ -44,50 +40,28 @@ func movement(delta) -> void:
 		else:
 			$Boss_Animated_Sprite.flip_h = false
 		
-		var speed_correction = -1.0 / self_position_to_player.length() + 1
+		var distance_to_player = self_position_to_player.length()
+		if distance_to_player == 0:
+			distance_to_player = 0.001
+		
+		var speed_correction = -1.0 / distance_to_player + 1
 		
 		move_and_slide(-self_position_to_player * self.speed * speed_correction * delta)
 
 #call function to shoot
 func shoot():
-	#projectile node path  EX:load("res://Justin/Enemies/Boss/projectile.tscn")
-	var projectile = load(str(projectileNodePath))
-	var bullet = projectile.instance()
+	var bullet_directions = [
+		Vector2( 0,-1), Vector2( 1,-1), Vector2( 1, 0), Vector2( 1, 1),
+		Vector2( 0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(-1,-1)
+	]
 	
-	if facedirection == -1 && sign(bullet.velocity.x) == 1:
-		#facing right
-		bullet.velocity.x *= -1
-	elif facedirection == 1 && sign(bullet.velocity.x) == -1:
-		bullet.velocity.x *= -1
-	
-	#may need to change Test to Game!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	add_child_below_node(get_tree().get_root().get_node("Test"),bullet)
-	
-	#start timer and disable shooting
-	can_shoot=false
-	timer.start()
-	
-	#if bullet goes past variable it disappears
-	if position.x < bulletVaporizeDistX:
-		queue_free()
+	for bullet_direction in bullet_directions:
+		var new_bullet = projectile.instance()
+		new_bullet.global_position = self.global_position
+		new_bullet.name = "Projectile"
+		new_bullet.direction = bullet_direction.normalized()
+		get_tree().get_root().get_node("Game").add_child(new_bullet)
 
-#func get_input_axis():
-#	axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
-#	if Input.is_action_pressed("move_left"):
-#		$AnimatedSprite.flip_h = true
-#	if Input.is_action_pressed("move_right"):
-#		$AnimatedSprite.flip_h = false
-#	axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
-#	axis = axis.normalized()
-
-
-##TO DELAY BOSS FROM ENTERING####
-#var t = Timer.new()
-#t.set_wait_time(3)
-#t.set_one_shot(true)
-#self.add_child(t)
-#t.start()
-#yield(t, "timeout")
-
-#t.queue_free()   #TO RELEASE THE TIMER from memory & counting
-
+func _on_Gun_Timer_timeout():
+	shoot()
+	$Gun/Timer.start(bulletDelay)

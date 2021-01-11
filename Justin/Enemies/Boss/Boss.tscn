@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Justin/Enemies/Boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://Justin/Sprites/Boss_idle.png" type="Texture" id=2]
 [ext_resource path="res://Justin/Sprites/Boss_walk.png" type="Texture" id=3]
 [ext_resource path="res://Justin/Sprites/Boss_shoot.png" type="Texture" id=4]
+[ext_resource path="res://Julian/VFX/Teleport/Teleport.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Justin/Enemies/Boss/Projectile.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,8 +29,10 @@ animations = [ {
 radius = 709.97
 
 [node name="Boss" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 1 )
-speed = 250
+projectile = ExtResource( 6 )
 
 [node name="Boss_Animated_Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 20.1815, 28.5905 )
@@ -37,6 +41,15 @@ animation = "Shoot"
 frame = 1
 playing = true
 
+[node name="Teleport" parent="." instance=ExtResource( 5 )]
+visible = false
+scale = Vector2( 0.4, 0.4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.146, 0.146 )
 shape = SubResource( 2 )
+
+[node name="Gun" type="Position2D" parent="."]
+
+[node name="Timer" type="Timer" parent="Gun"]
+[connection signal="timeout" from="Gun/Timer" to="." method="_on_Gun_Timer_timeout"]

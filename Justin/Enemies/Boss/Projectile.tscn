@@ -4,10 +4,12 @@
 [ext_resource path="res://Justin/Sprites/bullet.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.94518
+radius = 6.09388
 
 [node name="Projectile" type="KinematicBody2D"]
+collision_layer = 8
 script = ExtResource( 1 )
+speed = 400
 
 [node name="Sprite" type="Sprite" parent="."]
 

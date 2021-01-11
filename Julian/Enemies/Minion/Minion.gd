@@ -14,10 +14,10 @@ func movement(delta) -> void:
 	if self.Player != null:
 		var self_position_to_player = self.global_position - self.Player.global_position
 		
-		#if self_position_to_player.x > 0:
-		#	$Boss_Animated_Sprite.flip_h = true
-		#else:
-		#	$Boss_Animated_Sprite.flip_h = false
+		if self_position_to_player.x > 0:
+			$AnimatedSprite.flip_h = true
+		else:
+			$AnimatedSprite.flip_h = false
 		
 		var speed_correction = -1.0 / self_position_to_player.length() + 1
 		

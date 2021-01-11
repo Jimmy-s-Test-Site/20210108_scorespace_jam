@@ -18,6 +18,8 @@ height = 490.0
 
 [node name="Minion" type="KinematicBody2D"]
 scale = Vector2( 0.1, 0.1 )
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 1 )
 speed = 50
 
