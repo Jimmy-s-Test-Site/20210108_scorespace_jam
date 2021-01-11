@@ -1,1 +1,39 @@
-scorespacejam_20210108
+# Remote Fort
+codename scorespacejam_20210108
+
+Click on \[ENTER] to begin.
+
+# Description
+
+You are an antiquated tomb raider from the future who is in the middle of raiding the great temple of King Zulu. You've heard about his famous space fruits like the Blavocado, Shmorf, Hairfroot, and Beanards, and their magical properties. However, King Zulu and his vengeful minions have come to attack you for stealing their precious fruit. Gather the most fruit you can in the 30 seconds you have.
+
+Watch out! King Zulu can shoot growing Beanards, and will teleport to every room you've been to!
+
+# Controls
+
+Click to teleport. WASD/Arrows to move.
+
+Gather battery packs to continue teleporting
+
+And fruit from King Zulu
+
+Avoid growing Beanards
+
+
+TIPS:
+- Remember that when teleporting you will appear  in the center of the room
+- Don't teleport until you don't have a choice
+- The restart button is a bit broken, you must be patient with it or click it twice sometimes
+
+# Credits
+
+Graphics by Leo
+Music by Geo | @geosunsetmoth
+
+Code by
+- Julian | @jaacko-torus
+- Justin
+- Scott
+
+GitHub: https://github.com/jaacko-torus/scorespacejam_20210108
+Code licensed under the Unlicence
