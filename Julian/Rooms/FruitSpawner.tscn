@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Julian/Rooms/FruitSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Justin/Items/Fruit_Schmor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Justin/Items/Fruit_Idek.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Justin/Items/Fruit_Blavocado.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Justin/Items/Fruit_Hair.tscn" type="PackedScene" id=5]
+
+[node name="FruitSpawner" type="Node2D"]
+script = ExtResource( 1 )
+fruits = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ) ]

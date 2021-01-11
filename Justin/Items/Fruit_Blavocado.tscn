@@ -4,7 +4,7 @@
 [ext_resource path="res://Justin/Sounds/Pew_Pew.wav" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 46.7472
+radius = 36.7125
 
 [node name="Blavocado_Froot" type="KinematicBody2D"]
 

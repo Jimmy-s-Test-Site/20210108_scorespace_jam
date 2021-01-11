@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Julian/Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://Julian/Sprites/Room1.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Julian/Rooms/SpawnPoints/EnemySpawnPoints.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Julian/Rooms/SpawnPoints/PlayerSpawnPoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Justin/Items/Battery_Pickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Julian/Rooms/BatteryPackSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Julian/Rooms/FruitSpawner.tscn" type="PackedScene" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 1000, 0, 1000, 1000, 0, 1000 )
@@ -30,3 +32,7 @@ navpoly = SubResource( 1 )
 [node name="EnemySpawnPoints" parent="." instance=ExtResource( 4 )]
 
 [node name="PlayerSpawnPoint" parent="." instance=ExtResource( 5 )]
+
+[node name="BatteryPackSpawner" parent="." instance=ExtResource( 7 )]
+
+[node name="FruitSpawner" parent="." instance=ExtResource( 8 )]
