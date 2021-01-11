@@ -87,4 +87,4 @@ func generate() -> void:
 	self.instantiate_rooms(positions)
 
 func _ready() -> void:
-	pass
+	$Player.unit_room_size = self.unit_room_size

@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
 signal moved
+signal teleport_to
 signal finished_level
 signal dead
 
 var motion = Vector2.ZERO
+
+var unit_room_size
 
 export (int) var speed : int = 30000
 var axis : Vector2 = Vector2.ZERO
@@ -14,6 +17,7 @@ onready var sprite : Sprite = get_node("Place Holder")
 func _physics_process(delta):
 	get_input_axis()
 	get_hurt()
+	teleportation_manager()
 	apply_movement(delta)
 	animation_manager()
 
@@ -44,6 +48,53 @@ func get_hurt() -> void:
 				collision.collider.queue_free()
 			
 			self.emit_signal("dead")
+
+var clicking = false
+var holding_click = false
+
+func teleportation_manager() -> void:
+	if Input.is_mouse_button_pressed(1):
+		clicking = not clicking and not holding_click
+	
+	holding_click = Input.is_mouse_button_pressed(1)
+	
+	if clicking:
+		var room_id_x = floor(global_position.x / unit_room_size) + 0.5
+		var room_id_y = 0.0
+		
+		if int(room_id_x) % 2 == 0:
+			room_id_y = floor(global_position.y / unit_room_size) + 0.5
+		else:
+			room_id_y = floor(global_position.y / unit_room_size - 0.5) + 1
+		
+		var room_id = Vector2(room_id_x, room_id_y)
+		
+		var center_of_curr_room = room_id * unit_room_size
+		
+		var room_edge = {
+			"left" : center_of_curr_room.x - unit_room_size / 2,
+			"right": center_of_curr_room.x + unit_room_size / 2,
+			"up"   : center_of_curr_room.y - unit_room_size / 2,
+			"down" : center_of_curr_room.y + unit_room_size / 2
+		}
+		
+		var mouse_pos = get_global_mouse_position()
+		
+		if mouse_pos.x < room_edge.left: # left
+			if mouse_pos.y < center_of_curr_room.y: # top left
+				print("top left")
+			if mouse_pos.y > center_of_curr_room.y: # bottom left
+				print("bottom left")
+		elif mouse_pos.x > room_edge.right: # right
+			if mouse_pos.y < center_of_curr_room.y: # top right
+				print("top right")
+			if mouse_pos.y > center_of_curr_room.y: # bottom right
+				print("bottom right")
+		else: # center
+			if mouse_pos.y < room_edge.up: # up
+				print("up")
+			if mouse_pos.y > room_edge.down: # down
+				print("down")
 
 func apply_movement(delta):
 	motion = axis * speed * delta
