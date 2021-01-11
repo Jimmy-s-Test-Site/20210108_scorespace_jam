@@ -39,6 +39,8 @@ func new_level() -> void:
 		$Level/Player.connect("moved", self, "on_Player_moved")
 	if not $Level/Player.is_connected("dead", self, "on_Player_dead"):
 		$Level/Player.connect("dead", self, "on_Player_dead")
+	if not $Level/Player.is_connected("teleported_to", self, "on_Player_teleported_to"):
+		$Level/Player.connect("teleported_to", self, "on_Player_teleported_to")
 	
 	yield(self.get_tree().create_timer(3), "timeout")
 	
@@ -75,3 +77,6 @@ func on_Player_dead() -> void:
 	$CanvasLayer/SplashScreen.visible = false
 	
 	self.get_tree().paused = true
+
+func on_Player_teleported_to(new_position : Vector2) -> void:
+	pass

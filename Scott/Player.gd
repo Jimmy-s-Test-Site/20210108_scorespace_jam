@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal moved
-signal teleport_to
+signal teleported_to
 signal finished_level
 signal dead
 
@@ -80,21 +80,30 @@ func teleportation_manager() -> void:
 		
 		var mouse_pos = get_global_mouse_position()
 		
+		var new_position = center_of_curr_room
+		
 		if mouse_pos.x < room_edge.left: # left
 			if mouse_pos.y < center_of_curr_room.y: # top left
-				print("top left")
+				new_position.x -= unit_room_size
+				new_position.y -= unit_room_size / 2
 			if mouse_pos.y > center_of_curr_room.y: # bottom left
-				print("bottom left")
+				new_position.x -= unit_room_size
+				new_position.y += unit_room_size / 2
 		elif mouse_pos.x > room_edge.right: # right
 			if mouse_pos.y < center_of_curr_room.y: # top right
-				print("top right")
+				new_position.x += unit_room_size
+				new_position.y -= unit_room_size / 2
 			if mouse_pos.y > center_of_curr_room.y: # bottom right
-				print("bottom right")
+				new_position.x += unit_room_size
+				new_position.y += unit_room_size / 2
 		else: # center
 			if mouse_pos.y < room_edge.up: # up
-				print("up")
+				new_position.y -= unit_room_size
 			if mouse_pos.y > room_edge.down: # down
-				print("down")
+				new_position.y += unit_room_size
+		
+		if center_of_curr_room != new_position:
+			self.position = new_position
 
 func apply_movement(delta):
 	motion = axis * speed * delta

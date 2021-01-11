@@ -8,6 +8,11 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "RunL",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "RunR",
@@ -17,11 +22,6 @@ animations = [ {
 "loop": true,
 "name": "IdleF",
 "speed": 2.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "RunL",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
