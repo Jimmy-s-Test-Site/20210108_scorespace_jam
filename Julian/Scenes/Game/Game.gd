@@ -5,10 +5,12 @@ var end_room = null
 
 func _ready():
 	$Level.visible = false
+	$CanvasLayer/GameOverScreen.visible = false
 	$CanvasLayer/SplashScreen.visible = true
 	
 	self.get_tree().paused = true
 	
+	$CanvasLayer/GameOverScreen.connect("proceed", self, "on_game_over_screen_proceed")
 	$CanvasLayer/SplashScreen.connect("proceed", self, "on_splash_screen_proceed")
 
 func new_level() -> void:
@@ -48,6 +50,14 @@ func new_level() -> void:
 
 func on_splash_screen_proceed() -> void:
 	$Level.visible = true
+	$CanvasLayer/GameOverScreen.visible = false
+	$CanvasLayer/SplashScreen.visible = false
+	
+	new_level()
+
+func on_game_over_screen_proceed() -> void:
+	$Level.visible = true
+	$CanvasLayer/GameOverScreen.visible = false
 	$CanvasLayer/SplashScreen.visible = false
 	
 	new_level()
@@ -61,6 +71,7 @@ func on_Player_moved() -> void:
 
 func on_Player_dead() -> void:
 	$Level.visible = false
-	$CanvasLayer/SplashScreen.visible = true
+	$CanvasLayer/GameOverScreen.visible = true
+	$CanvasLayer/SplashScreen.visible = false
 	
 	self.get_tree().paused = true
