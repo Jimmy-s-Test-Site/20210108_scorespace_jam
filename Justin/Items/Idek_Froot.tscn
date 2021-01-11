@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Justin/Sprites/idekfroot.png" type="Texture" id=1]
+[ext_resource path="res://Justin/Sounds/Pew_Pew.wav" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.3721, 37.3687 )
@@ -12,6 +13,8 @@ position = Vector2( 0.33371, 2.33597 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+attenuation = 0.0853775
 
 [node name="Idek_Froot_Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
