@@ -4,6 +4,9 @@ export (int) var size : int = 200 setget set_size
 export (int) var percent_froot : int = 100
 export (int) var percent_minion : int = 100
 
+export (PackedScene) var batery_pack
+export (Array, PackedScene) var fruits
+
 export (NodePath) var HairFrootNodePath := "res://Justin/Items/Hair_Froot.tscn"
 export (NodePath) var BlavocadoFrootNodePath := "res://Justin/Items/Blavocado_Froot.tscn"
 export (NodePath) var IdekFrootNodePath := "res://Justin/Items/Idek_Froot.tscn"

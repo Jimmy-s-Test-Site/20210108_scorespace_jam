@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Julian/Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://Julian/Sprites/Room1.png" type="Texture" id=2]
 [ext_resource path="res://Julian/Rooms/Walls/Walls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Julian/Rooms/SpawnPoints/EnemySpawnPoints.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Julian/Rooms/SpawnPoints/PlayerSpawnPoint.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Justin/Items/Battery_Pickup.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 1000, 0, 1000, 1000, 0, 1000 )
@@ -13,6 +14,8 @@ outlines = [ PoolVector2Array( 0, 0, 1000, 0, 1000, 1000, 0, 1000 ) ]
 
 [node name="Room1" type="Node2D"]
 script = ExtResource( 1 )
+batery_pack = ExtResource( 6 )
+fruits = [ null, null, null ]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
