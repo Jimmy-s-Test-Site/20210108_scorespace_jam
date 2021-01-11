@@ -15,7 +15,6 @@ var can_shoot = true
 
 func _ready() -> void:
 	self.z_index = 3
-	self.set_process(false)
 	#set up timer
 	#timer=Timer.new()
 	#timer.set_one_shot(true)
@@ -45,7 +44,9 @@ func movement(delta) -> void:
 		else:
 			$Boss_Animated_Sprite.flip_h = false
 		
-		move_and_slide(-self_position_to_player * self.speed * delta)
+		var speed_correction = -1.0 / self_position_to_player.length() + 1
+		
+		move_and_slide(-self_position_to_player * self.speed * speed_correction * delta)
 
 #call function to shoot
 func shoot():
