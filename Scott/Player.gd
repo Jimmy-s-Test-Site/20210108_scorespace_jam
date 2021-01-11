@@ -36,9 +36,9 @@ func _physics_process(delta) -> void:
 func get_input_axis():
 	axis.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("left"):
 		$AnimatedSprite.flip_h = true
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right"):
 		$AnimatedSprite.flip_h = false
 	
 	axis.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))

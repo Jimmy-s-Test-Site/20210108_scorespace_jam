@@ -26,4 +26,4 @@ pause_mode = 1
 pause_mode = 2
 
 [node name="BGM" parent="." instance=ExtResource( 7 )]
-volume_db = -20.0
+volume_db = -30.0
