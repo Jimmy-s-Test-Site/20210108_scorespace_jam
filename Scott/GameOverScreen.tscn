@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scott/GameOverScreen.gd" type="Script" id=1]
 [ext_resource path="res://Scott/pixil-frame-0 (1).png" type="Texture" id=2]
 [ext_resource path="res://Scott/pixil-frame-0 (3).png" type="Texture" id=3]
 [ext_resource path="res://Scott/Font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Julian/Fonts Files/SPECKLESNOOO.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -11,8 +12,14 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 5 )
+
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 5 )
 
 [node name="GameOverScreen" type="Control"]
 script = ExtResource( 1 )
@@ -53,13 +60,25 @@ __meta__ = {
 }
 
 [node name="Time" type="Label" parent="ColorRect"]
-margin_left = 133.978
+margin_left = 164.897
 margin_top = 412.404
-margin_right = 190.978
+margin_right = 221.897
 margin_bottom = 429.404
 rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 2 )
 text = "TIME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/Time"]
+margin_left = -53.0273
+margin_top = 44.7928
+margin_right = 109.973
+margin_bottom = 61.7928
+custom_fonts/font = SubResource( 4 )
+text = "0:0:0"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -73,5 +92,15 @@ rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 3 )
 text = "FRUITS COLLECTED"
 
-[node name="Node" type="Node" parent="."]
+[node name="Label" type="Label" parent="ColorRect/Fruits Collected"]
+margin_left = 50.8648
+margin_top = 39.1079
+margin_right = 166.865
+margin_bottom = 56.1079
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="ColorRect/Game Over!/Restart" to="." method="_on_Restart_pressed"]
