@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Julian/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Julian/Scenes/Game/Game.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scott/GameOverScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Julian/Enemies/Minion/Minion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Julian/GUI/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Justin/Sounds/BGM.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node2D"]
 pause_mode = 2
@@ -23,3 +24,6 @@ pause_mode = 1
 
 [node name="SplashScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 pause_mode = 2
+
+[node name="BGM" parent="." instance=ExtResource( 7 )]
+volume_db = -20.0

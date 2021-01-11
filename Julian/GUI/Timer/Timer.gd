@@ -1,14 +1,18 @@
 extends Control
 
+signal time_over
+
 var time : int = 0
 
 func start() -> void:
-	time = 0
+	$Label.text = str(time)
 	$Timer.start(1)
 
 func _on_Timer_timeout():
-	time += 1
-	var seconds = time % 60
-	var minutes = time / 60
-	$Label.text = str(minutes, ":", seconds)
-	$Timer.start(1)
+	time -= 1
+	
+	if time < 0:
+		time = 0
+		emit_signal("time_over")
+	
+	$Label.text = str(time)

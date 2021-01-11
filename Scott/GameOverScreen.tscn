@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scott/GameOverScreen.gd" type="Script" id=1]
 [ext_resource path="res://Scott/pixil-frame-0 (1).png" type="Texture" id=2]
@@ -7,18 +7,15 @@
 [ext_resource path="res://Julian/Fonts Files/SPECKLESNOOO.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
+size = 72
 font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 64
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
+size = 64
 font_data = ExtResource( 5 )
 
 [node name="GameOverScreen" type="Control"]
@@ -36,71 +33,138 @@ __meta__ = {
 }
 
 [node name="Game Over!" type="Label" parent="ColorRect"]
-margin_left = 300.0
-margin_top = 108.676
-margin_right = 435.0
-margin_bottom = 127.676
-rect_scale = Vector2( 3, 3 )
+margin_left = 187.025
+margin_top = 93.2163
+margin_right = 785.025
+margin_bottom = 168.216
 custom_fonts/font = SubResource( 1 )
 text = "GAME OVER!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Restart" type="TextureButton" parent="ColorRect/Game Over!"]
-margin_left = 100.756
-margin_top = 25.4702
-margin_right = 300.756
-margin_bottom = 225.47
+[node name="Restart" type="TextureButton" parent="ColorRect"]
+margin_left = 573.676
+margin_top = 150.946
+margin_right = 1320.68
+margin_bottom = 859.946
+rect_min_size = Vector2( 3, 3 )
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="ColorRect"]
-margin_left = 164.897
-margin_top = 412.404
-margin_right = 221.897
-margin_bottom = 429.404
-rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 2 )
-text = "TIME"
+[node name="Lasted" type="Control" parent="ColorRect"]
+visible = false
+margin_left = 571.297
+margin_top = 106.945
+margin_right = 611.297
+margin_bottom = 146.945
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="ColorRect/Time"]
-margin_left = -53.0273
-margin_top = 44.7928
-margin_right = 109.973
-margin_bottom = 61.7928
-custom_fonts/font = SubResource( 3 )
-text = "0:0:0"
+[node name="FruitsCollected" type="Label" parent="ColorRect/Lasted"]
+margin_left = -447.317
+margin_top = 141.981
+margin_right = 90.6832
+margin_bottom = 276.981
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 4 )
+text = "FRUITS
+COLLECTED"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Fruits Collected" type="Label" parent="ColorRect"]
-margin_left = 41.925
-margin_top = 221.575
-margin_right = 270.925
-margin_bottom = 240.575
-rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 4 )
-text = "FRUITS COLLECTED"
-
-[node name="Label" type="Label" parent="ColorRect/Fruits Collected"]
-margin_left = 50.8648
-margin_top = 39.1079
-margin_right = 166.865
-margin_bottom = 56.1079
+[node name="Label" type="Label" parent="ColorRect/Lasted/FruitsCollected"]
+margin_left = 6.0
+margin_top = 216.0
+margin_right = 546.0
+margin_bottom = 282.0
 custom_fonts/font = SubResource( 5 )
 text = "0"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="ColorRect/Game Over!/Restart" to="." method="_on_Restart_pressed"]
+
+[node name="NotEven" type="Control" parent="ColorRect"]
+margin_left = 571.297
+margin_top = 106.945
+margin_right = 611.297
+margin_bottom = 146.945
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FruitsCollected" type="Label" parent="ColorRect/NotEven"]
+margin_left = -453.263
+margin_top = 101.548
+margin_right = 84.7372
+margin_bottom = 236.548
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 4 )
+text = "FRUITS
+COLLECTED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/NotEven/FruitsCollected"]
+margin_left = -1.92805
+margin_top = 164.468
+margin_right = 538.072
+margin_bottom = 230.468
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnlyLasted" type="Label" parent="ColorRect/NotEven"]
+margin_left = -447.317
+margin_top = 268.037
+margin_right = 90.6832
+margin_bottom = 403.037
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 4 )
+text = "ONLY
+LASTED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/NotEven/OnlyLasted"]
+margin_left = 9.96394
+margin_top = 162.486
+margin_right = 549.964
+margin_bottom = 228.486
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Seconds" type="Label" parent="ColorRect/NotEven"]
+margin_left = -447.317
+margin_top = 415.499
+margin_right = 90.6832
+margin_bottom = 550.499
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 4 )
+text = "SECOND(S)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ColorRect/Restart" to="." method="_on_Restart_pressed"]

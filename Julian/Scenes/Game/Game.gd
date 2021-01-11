@@ -4,6 +4,8 @@ export (PackedScene) var minion_scene
 
 var fruits = 0
 
+var total_time = 30
+
 var start_room = null
 var end_room = null
 
@@ -17,12 +19,12 @@ func _ready():
 	
 	$CanvasLayer/GameOverScreen.connect("proceed", self, "on_game_over_screen_proceed")
 	$CanvasLayer/SplashScreen.connect("proceed", self, "on_splash_screen_proceed")
+	$CanvasLayer/HUD/Timer.connect("time_over", self, "on_timer_time_over")
 
 func new_level() -> void:
 	fruits = 0
 	$CanvasLayer/HUD/Fruits/Label.text = str(fruits)
 	$CanvasLayer/HUD/TeleportationEnergy/Label.text = "3"
-	$CanvasLayer/HUD/Timer.time = 0
 	
 	$Level/Player.teleportation_energy = $Level/Player.max_teleportation_energy
 	$Level/Player.alive = true
@@ -49,6 +51,9 @@ func new_level() -> void:
 	
 	$Level/Player.position = start_position
 	
+	$CanvasLayer/HUD/Timer.time = total_time
+	$CanvasLayer/HUD/Timer.start()
+	
 	self.get_tree().paused = false
 	
 	if not $Level/Player.is_connected("moved", self, "on_Player_moved"):
@@ -59,7 +64,9 @@ func new_level() -> void:
 		$Level/Player.connect("teleported_to", self, "on_Player_teleported_to")
 	if not $Level/Player.is_connected("fruit_gathered", self, "on_Player_fruit_gathered"):
 		$Level/Player.connect("fruit_gathered", self, "on_Player_fruit_gathered")
-	
+	if not $Level/Player.is_connected("teleportation_energy_changed", self, "on_Player_teleportation_energy_changed"):
+		$Level/Player.connect("teleportation_energy_changed", self, "on_Player_teleportation_energy_changed")
+		
 	$CanvasLayer/HUD/Timer.start()
 	
 	yield(self.get_tree().create_timer(3), "timeout")
@@ -98,18 +105,20 @@ func on_Player_dead() -> void:
 	$Level.visible = false
 	$CanvasLayer/HUD.visible = false
 	$CanvasLayer/GameOverScreen.visible = true
+	$CanvasLayer/GameOverScreen/ColorRect/NotEven.visible = true
+	$CanvasLayer/GameOverScreen/ColorRect/Lasted.visible = false
 	$CanvasLayer/SplashScreen.visible = false
 	
 	$Level/Boss.set_process(false)
 	
-	$CanvasLayer/GameOverScreen/ColorRect/Time/Label.text = $CanvasLayer/HUD/Timer/Label.text
-	$"CanvasLayer/GameOverScreen/ColorRect/Fruits Collected/Label".text = $CanvasLayer/HUD/Fruits/Label.text
+	var fruits = $CanvasLayer/HUD/Fruits/Label.text
+	$CanvasLayer/GameOverScreen/ColorRect/NotEven/FruitsCollected/Label.text = fruits
+	var time = $CanvasLayer/HUD/Timer.time
+	$CanvasLayer/GameOverScreen/ColorRect/NotEven/OnlyLasted/Label.text = str(total_time - time)
 	
 	self.get_tree().paused = true
 
 func on_Player_teleported_to(new_position : Vector2) -> void:
-	$CanvasLayer/HUD/TeleportationEnergy/Label.text = str(int($CanvasLayer/HUD/TeleportationEnergy/Label.text) - 1)
-	
 	
 	yield(get_tree().create_timer(1.2), "timeout")
 	
@@ -135,3 +144,21 @@ func on_Player_teleported_to(new_position : Vector2) -> void:
 func on_Player_fruit_gathered() -> void:
 	fruits += 1
 	$CanvasLayer/HUD/Fruits/Label.text = str(fruits)
+
+func on_Player_teleportation_energy_changed(energy : int) -> void:
+	$CanvasLayer/HUD/TeleportationEnergy/Label.text = str(energy)
+
+func on_timer_time_over() -> void:
+	$Level.visible = false
+	$CanvasLayer/HUD.visible = false
+	$CanvasLayer/GameOverScreen.visible = true
+	$CanvasLayer/GameOverScreen/ColorRect/NotEven.visible = false
+	$CanvasLayer/GameOverScreen/ColorRect/Lasted.visible = true
+	$CanvasLayer/SplashScreen.visible = false
+	
+	$Level/Boss.set_process(false)
+	
+	var fruits = $CanvasLayer/HUD/Fruits/Label.text
+	$CanvasLayer/GameOverScreen/ColorRect/Lasted/FruitsCollected/Label.text = fruits
+	
+	self.get_tree().paused = true

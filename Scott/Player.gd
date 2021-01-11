@@ -34,14 +34,14 @@ func _physics_process(delta) -> void:
 		animation_manager()
 
 func get_input_axis():
-	axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	axis.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	
 	if Input.is_action_pressed("ui_left"):
 		$AnimatedSprite.flip_h = true
 	if Input.is_action_pressed("ui_right"):
 		$AnimatedSprite.flip_h = false
 	
-	axis.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	axis.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	axis = axis.normalized()
 	
 	if axis.length() > 0.0:
@@ -143,6 +143,7 @@ func teleportation_manager() -> void:
 			self.collision_mask = 0b111110
 			$Teleport.visible = true
 			$Teleport/AnimationPlayer.play("out")
+			self.emit_signal("teleportation_energy_changed", teleportation_energy)
 			self.emit_signal("teleported_to", new_position)
 
 func apply_movement(delta):
