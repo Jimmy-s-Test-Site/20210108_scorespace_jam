@@ -25,3 +25,5 @@ scale = Vector2( 0.8, 0.8 )
 position = Vector2( 128.854, -223.248 )
 scale = Vector2( 0.8, 0.8 )
 MoveSpeed = 250
+
+[node name="Minions" type="Node2D" parent="."]

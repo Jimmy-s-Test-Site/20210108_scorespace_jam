@@ -83,18 +83,16 @@ func teleportation_manager() -> void:
 		var new_position = center_of_curr_room
 		
 		if mouse_pos.x < room_edge.left: # left
+			new_position.x -= unit_room_size
 			if mouse_pos.y < center_of_curr_room.y: # top left
-				new_position.x -= unit_room_size
 				new_position.y -= unit_room_size / 2
 			if mouse_pos.y > center_of_curr_room.y: # bottom left
-				new_position.x -= unit_room_size
 				new_position.y += unit_room_size / 2
 		elif mouse_pos.x > room_edge.right: # right
+			new_position.x += unit_room_size
 			if mouse_pos.y < center_of_curr_room.y: # top right
-				new_position.x += unit_room_size
 				new_position.y -= unit_room_size / 2
 			if mouse_pos.y > center_of_curr_room.y: # bottom right
-				new_position.x += unit_room_size
 				new_position.y += unit_room_size / 2
 		else: # center
 			if mouse_pos.y < room_edge.up: # up
@@ -104,6 +102,7 @@ func teleportation_manager() -> void:
 		
 		if center_of_curr_room != new_position:
 			self.position = new_position
+			self.emit_signal("teleported_to", new_position)
 
 func apply_movement(delta):
 	motion = axis * speed * delta

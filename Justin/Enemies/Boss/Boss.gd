@@ -1,13 +1,11 @@
 extends KinematicBody2D
 
-export (int) var MoveSpeed := 500
+export (int) var speed := 500
 export (int) var bulletVaporizeDistX := -5000
 export (int) var bulletDelay := 2
 export (NodePath) var projectileNodePath := "res://Justin/Enemies/Boss/Projectile.tscn"
 
 var Player = null
-
-var path := PoolVector2Array() setget set_path
 
 var facedirection : int = 1
 
@@ -16,6 +14,7 @@ var timer = null
 var can_shoot = true
 
 func _ready() -> void:
+	self.z_index = 3
 	self.set_process(false)
 	#set up timer
 	#timer=Timer.new()
@@ -29,45 +28,24 @@ func on_timeout_complete():
 	can_shoot=true
 
 func _process(delta : float) -> void:
-	var move_distance : = self.MoveSpeed * delta
 	#if boss y-pos is same as hero y-pos and delay is 0 then shoot
 	
 	#if Player != null:
 	#	if (self.Player.position.y == self.position.y) && can_shoot:
 	#		shoot()
 	
-	self.move_along_path(move_distance)
+	movement(delta)
 
-func move_along_path(distance : float) -> void:
-	var start_point := self.position
-	
-	for i in range(self.path.size()):
-		var distance_to_next_point := start_point.distance_to(self.path[0])
+func movement(delta) -> void:
+	if self.Player != null:
+		var self_position_to_player = self.global_position - self.Player.global_position
 		
-		if (start_point - self.path[0]).x > 0:
+		if self_position_to_player.x > 0:
 			$Boss_Animated_Sprite.flip_h = true
-		elif (start_point - self.path[0]).x < 0:
+		else:
 			$Boss_Animated_Sprite.flip_h = false
 		
-		if distance <= distance_to_next_point and distance >= 0:
-			self.position = start_point.linear_interpolate(self.path[0], distance / distance_to_next_point)
-			break
-		elif distance < 0.0:
-			self.position = self.path[0]
-			self.set_process(false)
-			break
-		
-		distance -= distance_to_next_point
-		start_point = path[0]
-		self.path.remove(0)
-
-func set_path(value : PoolVector2Array) -> void:
-	path = value
-	
-	if value.size() == 0:
-		return
-	
-	self.set_process(true)
+		move_and_slide(-self_position_to_player * self.speed * delta)
 
 #call function to shoot
 func shoot():

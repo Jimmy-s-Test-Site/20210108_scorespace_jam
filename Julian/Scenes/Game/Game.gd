@@ -1,5 +1,7 @@
 extends Node2D
 
+export (PackedScene) var minion_scene
+
 var start_room = null
 var end_room = null
 
@@ -35,6 +37,11 @@ func new_level() -> void:
 	
 	self.get_tree().paused = false
 	
+	for minion_spawn_point in start_room.get_node("EnemySpawnPoints").get_children():
+		var minion = self.minion_scene.instance()
+		minion.position = start_position + (minion_spawn_point.position / 2)
+		$Level/Minions.add_child(minion)
+	
 	if not $Level/Player.is_connected("moved", self, "on_Player_moved"):
 		$Level/Player.connect("moved", self, "on_Player_moved")
 	if not $Level/Player.is_connected("dead", self, "on_Player_dead"):
@@ -68,8 +75,10 @@ func on_Player_finished_level() -> void:
 	pass
 
 func on_Player_moved() -> void:
-	var new_path : PoolVector2Array = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
-	$Level/Boss.path = new_path
+	$Level/Boss.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, $Level/Player.global_position)
+	
+	for minion in $Level/Minions.get_children():
+		minion.path = $Level/Rooms.get_simple_path($Level/Boss.global_position, minion.global_position)
 
 func on_Player_dead() -> void:
 	$Level.visible = false
@@ -79,4 +88,7 @@ func on_Player_dead() -> void:
 	self.get_tree().paused = true
 
 func on_Player_teleported_to(new_position : Vector2) -> void:
-	pass
+	
+	yield(get_tree().create_timer(1.2), "timeout")
+	
+	$Level/Boss.global_position = new_position
