@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.3721, 37.3687 )
 
-[node name="Idek_Froot" type="KinematicBody2D"]
+[node name="FruitIdek" type="KinematicBody2D"]
+collision_layer = 16
 
 [node name="Idek_Froot_Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0.33371, 2.33597 )

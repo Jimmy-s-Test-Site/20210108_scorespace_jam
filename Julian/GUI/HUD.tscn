@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Julian/GUI/Timer/Timer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Julian/GUI/TeleportationEnergy/TeleportationEnergy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Julian/GUI/Fruits/Fruits.tscn" type="PackedScene" id=3]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" parent="." instance=ExtResource( 1 )]
+margin_left = 2.73773
+margin_top = 6.47629
+margin_right = 2.73779
+margin_bottom = 6.47632
+
+[node name="TeleportationEnergy" parent="." instance=ExtResource( 2 )]
+margin_left = 841.952
+margin_top = 4.79453
+margin_right = 841.952
+margin_bottom = 4.79453
+
+[node name="Fruits" parent="." instance=ExtResource( 3 )]
+margin_left = 434.958
+margin_top = 14.8853
+margin_right = 434.958
+margin_bottom = 14.8853
+rect_scale = Vector2( 0.8, 0.8 )

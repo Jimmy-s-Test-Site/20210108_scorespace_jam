@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 36.7125
 
-[node name="Blavocado_Froot" type="KinematicBody2D"]
+[node name="FruitBlavocado" type="KinematicBody2D"]
+collision_layer = 16
 
 [node name="Blavocado_Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -0.667419, 1.66855 )

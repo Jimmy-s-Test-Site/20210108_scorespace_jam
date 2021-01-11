@@ -7,6 +7,7 @@
 extents = Vector2( 43.7349, 31.4038 )
 
 [node name="Battery_Pickup" type="KinematicBody2D"]
+collision_layer = 32
 
 [node name="Battery_Pickup_Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

@@ -21,5 +21,6 @@ func froot_spawn():
 		if rng.randf() < percent_froot: #less than this then spawn
 			var new_froot = fruit.instance()
 			new_froot.position = newRandPos
+			new_froot.rotation_degrees = rng.randi() % 360
 			add_child(new_froot)
 

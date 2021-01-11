@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Julian/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Julian/Scenes/Game/Game.gd" type="Script" id=2]
 [ext_resource path="res://Scott/SplashScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scott/GameOverScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Julian/Enemies/Minion/Minion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Julian/GUI/HUD.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node2D"]
 pause_mode = 2
@@ -15,6 +16,8 @@ minion_scene = ExtResource( 5 )
 pause_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 4 )]
 

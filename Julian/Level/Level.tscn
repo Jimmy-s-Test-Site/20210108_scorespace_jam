@@ -19,11 +19,10 @@ rooms = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -200.764, 192.866 )
-scale = Vector2( 0.8, 0.8 )
 
 [node name="Boss" parent="." instance=ExtResource( 9 )]
 position = Vector2( 128.854, -223.248 )
 scale = Vector2( 0.8, 0.8 )
-speed = 80
+speed = 50
 
 [node name="Minions" type="Node2D" parent="."]

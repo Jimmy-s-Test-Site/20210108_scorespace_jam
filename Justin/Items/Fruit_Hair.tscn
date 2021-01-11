@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 29.6037
 
-[node name="Hair_Froot" type="KinematicBody2D"]
+[node name="FruitHair" type="KinematicBody2D"]
+collision_layer = 16
 
 [node name="Hair_Froot_Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -5.55589, 5.15905 )

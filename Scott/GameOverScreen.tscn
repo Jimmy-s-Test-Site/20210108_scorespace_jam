@@ -12,10 +12,10 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -76,7 +76,7 @@ margin_left = -53.0273
 margin_top = 44.7928
 margin_right = 109.973
 margin_bottom = 61.7928
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "0:0:0"
 align = 1
 __meta__ = {
@@ -89,7 +89,7 @@ margin_top = 221.575
 margin_right = 270.925
 margin_bottom = 240.575
 rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "FRUITS COLLECTED"
 
 [node name="Label" type="Label" parent="ColorRect/Fruits Collected"]

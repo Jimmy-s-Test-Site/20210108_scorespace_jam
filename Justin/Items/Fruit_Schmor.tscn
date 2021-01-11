@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33.3687, 40.3721 )
 
-[node name="Shmor_Froot" type="KinematicBody2D"]
+[node name="FruitShmor" type="KinematicBody2D"]
+collision_layer = 16
 
 [node name="Schmor_Froot_Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -3.00339, -1.33484 )

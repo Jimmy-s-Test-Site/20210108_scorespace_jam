@@ -2,11 +2,14 @@ extends Node2D
 
 export (PackedScene) var minion_scene
 
+var fruits = 0
+
 var start_room = null
 var end_room = null
 
 func _ready():
 	$Level.visible = false
+	$CanvasLayer/HUD.visible = false
 	$CanvasLayer/GameOverScreen.visible = false
 	$CanvasLayer/SplashScreen.visible = true
 	
@@ -16,6 +19,14 @@ func _ready():
 	$CanvasLayer/SplashScreen.connect("proceed", self, "on_splash_screen_proceed")
 
 func new_level() -> void:
+	fruits = 0
+	$CanvasLayer/HUD/Fruits/Label.text = str(fruits)
+	$CanvasLayer/HUD/TeleportationEnergy/Label.text = "3"
+	$CanvasLayer/HUD/Timer.time = 0
+	
+	$Level/Player.teleportation_energy = $Level/Player.max_teleportation_energy
+	$Level/Player.alive = true
+	
 	for room in $Level/Rooms.get_children():
 		room.queue_free()
 	
@@ -40,26 +51,27 @@ func new_level() -> void:
 	
 	self.get_tree().paused = false
 	
-	for minion_spawn_point in start_room.get_node("EnemySpawnPoints").get_children():
-		var minion = self.minion_scene.instance()
-		minion.position = start_position + (minion_spawn_point.position / 4)
-		minion.Player = $Level/Player
-		$Level/Minions.add_child(minion)
-	
 	if not $Level/Player.is_connected("moved", self, "on_Player_moved"):
 		$Level/Player.connect("moved", self, "on_Player_moved")
 	if not $Level/Player.is_connected("dead", self, "on_Player_dead"):
 		$Level/Player.connect("dead", self, "on_Player_dead")
 	if not $Level/Player.is_connected("teleported_to", self, "on_Player_teleported_to"):
 		$Level/Player.connect("teleported_to", self, "on_Player_teleported_to")
+	if not $Level/Player.is_connected("fruit_gathered", self, "on_Player_fruit_gathered"):
+		$Level/Player.connect("fruit_gathered", self, "on_Player_fruit_gathered")
+	
+	$CanvasLayer/HUD/Timer.start()
 	
 	yield(self.get_tree().create_timer(3), "timeout")
 	
 	$Level/Boss.Player = $Level/Player
 	$Level/Boss.position = start_position
+	
+	$Level/Boss.set_process(true)
 
 func on_splash_screen_proceed() -> void:
 	$Level.visible = true
+	$CanvasLayer/HUD.visible = true
 	$CanvasLayer/GameOverScreen.visible = false
 	$CanvasLayer/SplashScreen.visible = false
 	
@@ -67,6 +79,7 @@ func on_splash_screen_proceed() -> void:
 
 func on_game_over_screen_proceed() -> void:
 	$Level.visible = true
+	$CanvasLayer/HUD.visible = true
 	$CanvasLayer/GameOverScreen.visible = false
 	$CanvasLayer/SplashScreen.visible = false
 	
@@ -83,13 +96,42 @@ func on_Player_moved() -> void:
 
 func on_Player_dead() -> void:
 	$Level.visible = false
+	$CanvasLayer/HUD.visible = false
 	$CanvasLayer/GameOverScreen.visible = true
 	$CanvasLayer/SplashScreen.visible = false
+	
+	$Level/Boss.set_process(false)
+	
+	$CanvasLayer/GameOverScreen/ColorRect/Time/Label.text = $CanvasLayer/HUD/Timer/Label.text
+	$"CanvasLayer/GameOverScreen/ColorRect/Fruits Collected/Label".text = $CanvasLayer/HUD/Fruits/Label.text
 	
 	self.get_tree().paused = true
 
 func on_Player_teleported_to(new_position : Vector2) -> void:
+	$CanvasLayer/HUD/TeleportationEnergy/Label.text = str(int($CanvasLayer/HUD/TeleportationEnergy/Label.text) - 1)
+	
 	
 	yield(get_tree().create_timer(1.2), "timeout")
 	
 	$Level/Boss.global_position = new_position
+	
+	var start_room = null
+	
+	for room in $Level/Rooms.get_children():
+		if room.global_position == Vector2(
+			new_position.x - $Level.unit_room_size / 2,
+			new_position.y + $Level.unit_room_size / 2
+		):
+			start_room = room
+			break
+	
+	if start_room != null:
+		for minion_spawn_point in start_room.get_node("EnemySpawnPoints").get_children():
+			var minion = self.minion_scene.instance()
+			minion.position = new_position - (Vector2.ONE * $Level.unit_room_size) + (minion_spawn_point.position / 2)
+			minion.Player = $Level/Player
+			$Level/Minions.add_child(minion)
+
+func on_Player_fruit_gathered() -> void:
+	fruits += 1
+	$CanvasLayer/HUD/Fruits/Label.text = str(fruits)

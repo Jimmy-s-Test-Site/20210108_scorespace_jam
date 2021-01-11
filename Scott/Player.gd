@@ -51,35 +51,40 @@ func get_hurt() -> void:
 	for slide_idx in self.get_slide_count():
 		var collision = self.get_slide_collision(slide_idx)
 		
-		var projectile_collision = collision.collider.name.begins_with("@Projectile")
-		var boss_collision = collision.collider.name == "Boss"
-		var minion_collision = collision.collider.name.begins_with("Minion")
-		var battery_pack_collision = collision.collider.name.begins_with("@Battery_Pickup")
-		var fruit_collision = collision.collider.name.begins_with("@Fruit")
-		
-		if battery_pack_collision:
-			if teleportation_energy < max_teleportation_energy:
+		if collision.collider != null:
+			var projectile_collision = collision.collider.name.begins_with("@Projectile")
+			var boss_collision = collision.collider.name == "Boss"
+			var minion_collision = collision.collider.name.begins_with("Minion")
+			var battery_pack_collision = collision.collider.name.begins_with("Battery_Pickup")
+			var fruit_collision = collision.collider.name.begins_with("Fruit")
+			
+			if battery_pack_collision:
+				if teleportation_energy < max_teleportation_energy:
+					teleportation_energy += 1
+					emit_signal("teleportation_energy_changed", teleportation_energy)
+					collision.collider.queue_free()
+				else:
+					self.collision_mask = 0b011110
+			
+			if fruit_collision:
+				emit_signal("fruit_gathered")
 				collision.collider.queue_free()
-				teleportation_energy += 1
-				emit_signal("teleportation_energy_changed", teleportation_energy)
-		
-		if fruit_collision:
-			collision.collider.queue_free()
-			emit_signal("fruit_gathered")
-		
-		if projectile_collision or boss_collision or minion_collision:
-			if projectile_collision:
-				collision.collider.queue_free()
+			
+			if projectile_collision or boss_collision or minion_collision:
+				if projectile_collision:
+					var scale_of_proj = collision.collider.scale.length()
+					
+					collision.collider.queue_free()
+					
+					if scale_of_proj < 2:
+						continue
 				
-				if collision.collider.scale.length() < 2:
-					continue
-			
-			if not $SFX/PlayerHit.playing:
-				$SFX/PlayerHit.play()
-			
-			self.alive = false
-			
-			self.emit_signal("dead")
+				if not $SFX/PlayerHit.playing:
+					$SFX/PlayerHit.play()
+				
+				self.alive = false
+				
+				self.emit_signal("dead")
 
 var clicking = false
 var holding_click = false
@@ -134,6 +139,8 @@ func teleportation_manager() -> void:
 		
 		if center_of_curr_room != new_position:
 			self.position = new_position
+			teleportation_energy -= 1
+			self.collision_mask = 0b111110
 			$Teleport.visible = true
 			$Teleport/AnimationPlayer.play("out")
 			self.emit_signal("teleported_to", new_position)
