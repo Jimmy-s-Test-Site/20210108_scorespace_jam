@@ -1,7 +1,8 @@
 extends Node2D
 
-export (float) var percent_froot : float = .75
-export (Array, PackedScene) var fruits
+export (float) var percent_packNRG : float = .75
+
+export (PackedScene) var battery_pack
 
 var rng = RandomNumberGenerator.new()
 
@@ -16,11 +17,10 @@ func random_spawn_position():
 		#will get a random number b/w room height
 	var random_y = rng.randi_range(0,$Sprite.texture.get_height())
 
-func froot_spawn():
+func bPack_spawn():
 	rng.randomize()
 	
-	if rng.randf() < percent_froot: #less than this then spawn
-		var froot = fruits[rng.randi_range(0,4)].instance()
-		add_child(froot)
-		froot.position = Vector2(random_spawn_position(),random_spawn_position()) #will spawn fruit at random x&y within room
+	if rng.randf() < percent_packNRG: #less than this then spawn
+		add_child(battery_pack)
+		battery_pack.position = Vector2(random_spawn_position(),random_spawn_position()) #will spawn fruit at random x&y within room
 	
