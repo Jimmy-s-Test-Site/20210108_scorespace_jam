@@ -16,11 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Scorespacejam 20210108"
-run/main_scene="res://Julian/Scenes/Game/Game.tscn"
-boot_splash/image="res://Julian/Sprites/Cover.png"
-boot_splash/bg_color=Color( 0.0980392, 0.0509804, 0.368627, 1 )
-config/icon="res://Julian/Sprites/iconx64.png"
-config/windows_native_icon="res://Julian/Sprites/iconx32.ico"
+config/icon="res://icon.png"
 
 [display]
 
